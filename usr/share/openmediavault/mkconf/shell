@@ -1,0 +1,68 @@
+#!/bin/sh
+#
+# This file is part of OpenMediaVault.
+#
+# @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
+# @author    Volker Theile <volker.theile@openmediavault.org>
+# @copyright Copyright (c) 2009-2013 Volker Theile
+#
+# OpenMediaVault is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# OpenMediaVault is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with OpenMediaVault. If not, see <http://www.gnu.org/licenses/>.
+
+# Documentation/Howto:
+# http://www.ruzee.com/blog/2009/01/apache-virtual-hosts-a-clean-setup-for-php-developers 
+# http://phphints.wordpress.com/2009/01/10/improving-php-performance-with-apache2-mpm-worker-mod_fcgid-2 
+# http://blog.rvi-media.de/php/apache-sehr-extravertiert-signatur-verbergen-und-token-anpassen
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+OMV_CERTIFICATE_DIR=${OMV_CERTIFICATE_DIR:-"/etc/ssl"}
+OMV_CERTIFICATE_PREFIX=${OMV_CERTIFICATE_PREFIX:-"openmediavault-"}
+
+OMV_APACHE2_WEBGUI_CONFIG_DIR=${OMV_APACHE2_WEBGUI_CONFIG_DIR:-"/etc/apache2/openmediavault-webgui.d"}
+
+OMV_SHELL_CONFIG_DIR=${OMV_SHELL_CONFIG_DIR:-"/etc/shellinabox"}
+OMV_SHELL_DEFAULT=${OMV_SHELL_DEFAULT:-"/etc/default/shellinabox"}
+OMV_SHELL_APACHE=${OMV_SHELL_APACHE:-"${OMV_APACHE2_WEBGUI_CONFIG_DIR}/shell.conf"}
+OMV_SHELL_TERMCSS=${OMV_SHELL_TERMCSS:-"${OMV_SHELL_CONFIG_DIR}/termstyle.css"}
+
+xmlstarlet sel -t -m "//system/shell" \
+  -o "SHELLINABOX_DAEMON_START=1" -n \
+  -o "SHELLINABOX_PORT=4200" -n \
+  -o "SHELLINABOX_ARGS=\"--localhost-only --disable-ssl-menu --service=\\:SSH " \
+  -i "enablebeep[. = '0']" -o "--no-beep " -b \
+  -i "string-length(linkify) > 0" -v "concat('--linkify=', linkify, ' ')" -b \
+  -i "enabletermsettings[. = '1']" -o "--css=${OMV_SHELL_TERMCSS} " -b \
+  -m "//webadmin" -i "enablessl[. = '0']" -o "--disable-ssl " -b \
+  -o "\"" ${OMV_CONFIG_FILE} | xmlstarlet unesc > ${OMV_SHELL_DEFAULT} 
+
+cat <<EOF > ${OMV_SHELL_APACHE}
+<IfModule mod_proxy.c>
+  <Location /shell>
+    ProxyPass http://localhost:4200/
+	Order allow,deny
+	Allow from all
+  </Location>
+</IfModule>
+EOF
+
+xmlstarlet sel -t -m "//system/shell" \
+  -o "#vt100 #console, #vt100 #alt_console, #vt100 #cursor, #vt100 #lineheight, #vt100 .hidden pre {" -n \
+  -i "string-length(fontfamily) > 0" -v "concat('    font-family: \"', fontfamily, '\";')" -n -b \
+  -i "fontsize > 0" -v "concat('    font-size: ', fontsize, 'px;')" -n -b \
+  -o "}" ${OMV_CONFIG_FILE} | xmlstarlet unesc > ${OMV_SHELL_TERMCSS}
+
+invoke-rc.d apache2 restart > /dev/null
