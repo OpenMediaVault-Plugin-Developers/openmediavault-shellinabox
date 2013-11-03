@@ -31,5 +31,5 @@ OMV.WorkspaceManager.registerNode({
 	path: "/system",
 	text: _("Shell-in-a-box"),
 	icon16: "images/terminal.png",
-	iconSvg: "images/terminal.svg",
+	iconSvg: "images/terminal.svg"
 });
