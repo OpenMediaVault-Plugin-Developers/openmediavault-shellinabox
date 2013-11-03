@@ -71,7 +71,7 @@ Ext.define("OMV.module.admin.system.shell.Terminal", {
 
 		me.html = "<form style='overflow: auto; height: 100%;'>";
 		me.html += "  <div class='x-box-aboutbox'><p>";
-		me.html += "    The shell-in-a-box service is not currently running, please enable it to access the terminal. <br/";
+		me.html += "    The shell-in-a-box service is not currently running. Please enable it to access the terminal. <br/";
 		me.html += "  </p></div>";
 		me.html += "<br/></form>"; 
 	}
