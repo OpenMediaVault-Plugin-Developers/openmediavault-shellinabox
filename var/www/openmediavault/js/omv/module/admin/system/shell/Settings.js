@@ -41,9 +41,10 @@ Ext.define("OMV.module.admin.system.shell.Settings", {
                 "fontfamily",
                 "fontsize"
             ],
-            conditions : [
-                { name  : 'enabletermsettings', value : true }
-            ],
+            conditions : [{
+                name  : 'enabletermsettings',
+                value : true 
+            }],
             properties : [
                 "!allowBlank",
                 "!readOnly"

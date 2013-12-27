@@ -73,11 +73,10 @@ Ext.define("OMV.module.admin.system.shell.Terminal", {
 
         me.html = "<form style='overflow: auto; height: 100%;'>" +
                     "<div class='x-box-aboutbox'><p>" +
-                      _("The shell-in-a-box service is not currently running. Please enable it to access the terminal.") + "<br/>" +
+                      _("The shell-in-a-box service is not currently running. Please enable it to access the terminal.") +
                     "</p></div>" +
                   "<br/></form>";
     }
-
 });
 
 OMV.WorkspaceManager.registerPanel({
