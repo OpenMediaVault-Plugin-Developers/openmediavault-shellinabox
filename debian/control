@@ -6,9 +6,10 @@ Build-Depends: debhelper (>= 7 )
 Standards-Version: 3.9.3
 
 Package: openmediavault-shellinabox
-Architecture: amd64
+Architecture: all
 Depends: ${misc:Depends},
-         openmediavault (>= 0.5)
+         openmediavault (>= 0.5),
+         shellinabox
 Description: OpenMediaVault shellinabox
  Shell-in-a-box plugin that enables ssh access 
  through the web-gui.

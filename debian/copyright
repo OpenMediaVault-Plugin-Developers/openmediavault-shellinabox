@@ -7,8 +7,3 @@ Files: /var/www/openmediavault/images/terminal.png
        /var/www/openmediavault/images/terminal.svg
        Copyright: IcoMoon <http://www.icomoon.io>
        IcoMoon <http://www.icomoon.io>
-
-Files: /usr/bin/shellinaboxd
-       /etc/shellinabox/*
-       Copyright: Markus Gutschke <markus@shellinabox.com>
-       http://shellinabox.com/

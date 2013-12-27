@@ -1,7 +1,2 @@
-etc/init.d/*                etc/init.d
-etc/shellinabox/*           etc/shellinabox
-usr/bin/*                   usr/bin
-usr/share/doc/*             usr/share/doc
-usr/share/man/*             usr/share/man
 usr/share/openmediavault/*  usr/share/openmediavault
 var/www/openmediavault/*    var/www/openmediavault
