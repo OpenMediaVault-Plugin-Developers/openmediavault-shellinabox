@@ -127,6 +127,6 @@ OMV.WorkspaceManager.registerPanel({
 	id: "settings",
 	path: "/system/shell",
 	text: _("Settings"),
-	position: 100,
+	position: 10,
 	className: "OMV.module.admin.system.shell.Settings"
 });
