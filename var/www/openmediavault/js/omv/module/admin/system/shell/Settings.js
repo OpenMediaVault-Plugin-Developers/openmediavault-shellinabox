@@ -48,7 +48,7 @@ Ext.define("OMV.module.admin.system.shell.Settings", {
                 "!allowBlank",
                 "!readOnly"
             ]
-         }],
+         }]
     }],
 
 	getFormItems: function() {
@@ -92,7 +92,7 @@ Ext.define("OMV.module.admin.system.shell.Settings", {
 				fieldLabel: _("Beep"),
 				boxLabel: _("Enable sound on BEL character"),
 				checked: false
-			}],
+			}]
 		},{
             xtype: "fieldset",
             title: _("Terminal settings"),
@@ -127,6 +127,6 @@ OMV.WorkspaceManager.registerPanel({
 	id: "settings",
 	path: "/system/shell",
 	text: _("Settings"),
-	position: 10,
+	position: 100,
 	className: "OMV.module.admin.system.shell.Settings"
 });
