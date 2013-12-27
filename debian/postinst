@@ -25,18 +25,6 @@ set -e
 case "$1" in
     configure)
 
-        ########################################################################
-        # Update the configuration.
-        #   <config>
-        #       <services>
-        #            <shell>
-        #                <enable>0</enable>
-        #                <sharedfolderref></sharedfolderref>
-        #            </sheel>
-        #        </services>
-        #   </config>
-        ########################################################################
-
         if ! omv_config_exists "/config/system/shell"; then
             echo "Initialize configuration"
             object="<enable>0</enable>"
