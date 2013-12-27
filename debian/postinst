@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# This file is part of OpenMediaVault.
-#
 # @license http://www.gnu.org/licenses/gpl.html GPL Version 3
 # @author Volker Theile <volker.theile@openmediavault.org>
 # @copyright Copyright (c) 2009-2013 Volker Theile
@@ -25,56 +23,47 @@ set -e
 . /usr/share/openmediavault/scripts/helper-functions
 
 case "$1" in
-        configure)
+    configure)
 
-                ########################################################################
-                # Update the configuration.
-                #        <config>
-                #                <services>
-                #                        <webdav>
-                #                                <enable>0</enable>
-                #                                <sharedfolderref></sharedfolderref>
-                #                        </webdav>
-                #                </services>
-                #        </config>
-                ########################################################################
+        ########################################################################
+        # Update the configuration.
+        #   <config>
+        #       <services>
+        #            <shell>
+        #                <enable>0</enable>
+        #                <sharedfolderref></sharedfolderref>
+        #            </sheel>
+        #        </services>
+        #   </config>
+        ########################################################################
 
-                if ! omv_config_exists "/config/system/shell"; then
-                        echo "Initialize configuration"
-                        object="<enable>0</enable>"
-                        object="${object}<linkify>none</linkify>"
-                        object="${object}<enablebeep>0</enablebeep>"
-                        object="${object}<enabletermsettings>0</enabletermsettings>"
-                        object="${object}<fontfamily>Courier New</fontfamily>"
-                        object="${object}<fontsize>14</fontsize>"
-                        omv_config_add_element "/config/system" "shell" "${object}" true
-                fi
-                
-                if ! getent passwd shellinabox >/devnull; then
-                        echo "Adding shellinabox user."
-                        adduser --disabled-password --quiet --system \
-                          --home /var/lib/shellinabox --gecos "Shell In A Box" \
-                          --group shellinabox
-                else
-                        echo "User shellinabox already exists."
-                fi
+        if ! omv_config_exists "/config/system/shell"; then
+            echo "Initialize configuration"
+            object="<enable>0</enable>"
+            object="${object}<linkify>none</linkify>"
+            object="${object}<enablebeep>0</enablebeep>"
+            object="${object}<enabletermsettings>0</enabletermsettings>"
+            object="${object}<fontfamily>Courier New</fontfamily>"
+            object="${object}<fontsize>14</fontsize>"
+            omv_config_add_element "/config/system" "shell" "${object}" true
+        fi
 
-                if ! [ -h /etc/apache2/mods_enabled/proxy_http.load ]; then
-                        echo "Enabling mod_proxy.c"
-                        a2enmod proxy_http
-                fi
+        if ! [ -h /etc/apache2/mods_enabled/proxy_http.load ]; then
+            echo "Enabling mod_proxy.c"
+            a2enmod proxy_http
+        fi
 
-                if [ -x "/etc/init.d/shellinabox" ]; then
-                        update-rc.d shellinabox start 30 2 3 4 5 . stop 01 0 1 6 . > /dev/null
-                fi
+        if [ -x "/etc/init.d/shellinabox" ]; then
+            update-rc.d shellinabox start 30 2 3 4 5 . stop 01 0 1 6 . > /dev/null
+        fi
         ;;
 
-        abort-upgrade|abort-remove|abort-deconfigure)
+    abort-upgrade|abort-remove|abort-deconfigure)
         ;;
 
-        *)
-                echo "postinst called with unknown argument '$1'" >&2
-                exit 1
+    *)
+        echo "postinst called with unknown argument '$1'" >&2
+        exit 1
         ;;
 esac
 
