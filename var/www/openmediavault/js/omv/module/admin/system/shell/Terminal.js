@@ -45,6 +45,8 @@ Ext.define("OMV.module.admin.system.shell.Terminal", {
 					} else {
 						me.embedWarning();
 					}
+					
+					OMV.MessageBox.hide();
 				} else {
 					OMV.MessageBox.error(null, error);
 				}
