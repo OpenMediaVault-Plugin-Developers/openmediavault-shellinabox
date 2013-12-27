@@ -1,3 +1,11 @@
+openmediavault-shellinabox (0.1.1) testing; urgency=low
+
+  * add locales
+  * fix messagebox not hiding
+  * compile new binaries
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 27 Dec 2013 08:50:27 -0500
+
 openmediavault-shellinabox (0.1.0) testing; urgency=low
 
   * initial release
