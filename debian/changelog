@@ -1,3 +1,9 @@
+openmediavault-shellinabox (0.1.2) testing; urgency=low
+
+  * apply changes from https://code.google.com/p/shellinabox/issues/detail?id=245
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 27 Dec 2013 10:02:27 -0500
+
 openmediavault-shellinabox (0.1.1) testing; urgency=low
 
   * add locales
