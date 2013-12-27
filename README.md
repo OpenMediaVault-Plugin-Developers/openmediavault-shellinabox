@@ -1,2 +1,2 @@
-openmediavault-shellinabox-amd64
-================================
+openmediavault-shellinabox
+==========================
