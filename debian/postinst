@@ -39,6 +39,7 @@ case "$1" in
         if ! [ -h /etc/apache2/mods_enabled/proxy_http.load ]; then
             echo "Enabling mod_proxy.c"
             a2enmod proxy_http
+            invoke-rc.d apache2 graceful
         fi
 
         if [ -x "/etc/init.d/shellinabox" ]; then

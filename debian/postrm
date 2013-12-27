@@ -47,7 +47,7 @@ case "$1" in
                     a2dismod proxy 2>&1
                 fi 
         
-                /etc/init.d/apache2 reload
+                invoke-rc.d apache2 graceful
         ;;
         
         upgrade|failed-upgrade|abort-install|abort-upgrade|disappear|remove)

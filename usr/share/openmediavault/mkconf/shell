@@ -65,4 +65,4 @@ xmlstarlet sel -t -m "//system/shell" \
   -i "fontsize > 0" -v "concat('    font-size: ', fontsize, 'px;')" -n -b \
   -o "}" ${OMV_CONFIG_FILE} | xmlstarlet unesc > ${OMV_SHELL_TERMCSS}
 
-invoke-rc.d apache2 restart > /dev/null
+invoke-rc.d apache2 graceful

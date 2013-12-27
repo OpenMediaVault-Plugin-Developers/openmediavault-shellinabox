@@ -1,3 +1,9 @@
+openmediavault-shellinabox (0.5.3) testing; urgency=low
+
+  * do graceful restart instead of reload
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 27 Dec 2013 14:25:27 -0500
+
 openmediavault-shellinabox (0.5.2) testing; urgency=low
 
   * separate shellinabox to a separate package
