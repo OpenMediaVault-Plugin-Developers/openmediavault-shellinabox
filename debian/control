@@ -8,7 +8,7 @@ Standards-Version: 3.9.3
 Package: openmediavault-shellinabox
 Architecture: all
 Depends: ${misc:Depends},
-         openmediavault (>= 0.5),
+         openmediavault (>= 0.5.34), openmediavault (<< 0.6),
          shellinabox
 Description: OpenMediaVault shellinabox
  Shell-in-a-box plugin that enables ssh access 
