@@ -94,6 +94,18 @@ Ext.define("OMV.module.admin.system.shell.Settings", {
                 fieldLabel : _("Beep"),
                 boxLabel   : _("Enable sound on BEL character"),
                 checked    : false
+            },{
+                xtype      : "button",
+                name       : "shellmanage",
+                text       : _("Shell Web Client"),
+                scope      : this,
+                handler    : function () {
+                    var link = '/shell';
+                    window.open(link, '_blank');
+                }
+            },{
+                border     : false,
+                html       : "</p>"
             }]
         },{
             xtype         : "fieldset",
