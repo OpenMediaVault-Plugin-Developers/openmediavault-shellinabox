@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# dezi121 <by@songming.me>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-shellinabox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-02 13:44-0600\n"
+"PO-Revision-Date: 2014-03-02 19:44+0000\n"
+"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-shellinabox/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Beep"
+msgstr "警报声"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Enable sound on BEL character"
+msgstr "对字符 BEL 启用声音"
+
+msgid "Font"
+msgstr "字体"
+
+msgid "General settings"
+msgstr "常规设置"
+
+msgid "Linkify"
+msgstr "Linkify"
+
+msgid "Loading ..."
+msgstr "载入中 ..."
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Shell"
+msgstr "Shell"
+
+msgid "Shell Web Client"
+msgstr ""
+
+msgid "Shell-in-a-box"
+msgstr "Shell-in-a-box"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "Terminal"
+msgstr "终端"
+
+msgid "Terminal settings"
+msgstr "终端设置"
+
+msgid ""
+"The shell-in-a-box service is not currently running. Please enable it to "
+"access the terminal."
+msgstr "shell-in-a-box 服务当前未运行，要访问终端请启用服务。"

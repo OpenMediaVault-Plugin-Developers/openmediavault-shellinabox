@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Paolo Velati <paolo.velati@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-shellinabox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-02 13:44-0600\n"
+"PO-Revision-Date: 2014-03-02 19:44+0000\n"
+"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-shellinabox/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Beep"
+msgstr "Beep"
+
+msgid "Enable"
+msgstr "Abilita"
+
+msgid "Enable sound on BEL character"
+msgstr "Abilita suono su carattere BEL"
+
+msgid "Font"
+msgstr "Font"
+
+msgid "General settings"
+msgstr "Impostazioni generali"
+
+msgid "Linkify"
+msgstr "Converti in URL"
+
+msgid "Loading ..."
+msgstr "Caricamento ..."
+
+msgid "Settings"
+msgstr "Impostazioni"
+
+msgid "Shell"
+msgstr "Shell"
+
+msgid "Shell Web Client"
+msgstr ""
+
+msgid "Shell-in-a-box"
+msgstr "Shell-in-a-box"
+
+msgid "Size"
+msgstr "Dimensione"
+
+msgid "Terminal"
+msgstr "Terminale"
+
+msgid "Terminal settings"
+msgstr "Impostazioni terminale"
+
+msgid ""
+"The shell-in-a-box service is not currently running. Please enable it to "
+"access the terminal."
+msgstr "Il servizio shell-in-a-box non è in esecuzione. Per favore abilitalo per avere accesso al terminale."
