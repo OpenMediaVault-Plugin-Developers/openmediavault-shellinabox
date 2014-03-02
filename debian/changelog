@@ -1,3 +1,9 @@
+openmediavault-shellinabox (0.5.4) testing; urgency=low
+
+  * add web client button to allow ssl connection
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 2 Mar 2014 04:10:27 -0500
+
 openmediavault-shellinabox (0.5.3) testing; urgency=low
 
   * do graceful restart instead of reload
