@@ -1,23 +1,22 @@
 #!/bin/sh
 #
-# This file is part of OpenMediaVault.
-#
 # @license http://www.gnu.org/licenses/gpl.html GPL Version 3
 # @author Volker Theile <volker.theile@openmediavault.org>
 # @copyright Copyright (c) 2009-2013 Volker Theile
+# @copyright Copyright (c) 2013-2014 OpenMediaVault Plugin Developers
 #
-# OpenMediaVault is free software: you can redistribute it and/or modify
+# This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
 #
-# OpenMediaVault is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with OpenMediaVault. If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 set -e
 
@@ -25,38 +24,30 @@ set -e
 . /usr/share/openmediavault/scripts/helper-functions
 
 case "$1" in
-        purge)
-                # Remove the configuration data
-                omv_config_delete "/config/system/shell"
-        ;;
+    purge)
+        # Remove the configuration data
+        omv_config_delete "/config/system/shell"
+    ;;
 
-        remove)
+    remove)
+        if [ -f /etc/nginx/openmediavault-webgui.d/shell.conf ]; then
+            rm -f /etc/nginx/openmediavault-webgui.d/shell.conf
+        fi
 
-                if [ -f /etc/apache2/openmediavault-webgui.d/shell.conf ]; then
-                    rm -f /etc/apache2/openmediavault-webgui.d/shell.conf
-                fi
+        if [ -f /etc/shellinabox/default ]; then
+            rm -f /etc/shellinabox/default
+        fi
 
-                if [ -f /etc/shellinabox/default ]; then
-                    rm -f /etc/shellinabox/default
-                fi
+        invoke-rc.d nginx restart
+    ;;
 
-                # Disabled until I can determine if there is a way to do dependency tracking
-                # here just in case other plugins end up using mod_proxy.c as well.
-                if 0 && [ -h /etc/apache2/mods-enabled/proxy_http.load ]; then
-                    a2dismod proxy_http 2>&1
-                    a2dismod proxy 2>&1
-                fi 
-        
-                invoke-rc.d apache2 graceful
-        ;;
-        
-        upgrade|failed-upgrade|abort-install|abort-upgrade|disappear|remove)
-        ;;
+    upgrade|failed-upgrade|abort-install|abort-upgrade|disappear|remove)
+    ;;
 
-        *)
-                echo "postrm called with unknown argument '$1'" >&2
-                exit 1
-        ;;
+    *)
+        echo "postrm called with unknown argument '$1'" >&2
+        exit 1
+    ;;
 esac
 
 exit 0

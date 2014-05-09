@@ -3,19 +3,20 @@
 # @license http://www.gnu.org/licenses/gpl.html GPL Version 3
 # @author Volker Theile <volker.theile@openmediavault.org>
 # @copyright Copyright (c) 2009-2013 Volker Theile
+# @copyright Copyright (c) 2013-2014 OpenMediaVault Plugin Developers
 #
-# OpenMediaVault is free software: you can redistribute it and/or modify
+# This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
 #
-# OpenMediaVault is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with OpenMediaVault. If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 set -e
 
@@ -24,7 +25,6 @@ set -e
 
 case "$1" in
     configure)
-
         if ! omv_config_exists "/config/system/shell"; then
             echo "Initialize configuration"
             object="<enable>0</enable>"
@@ -36,24 +36,21 @@ case "$1" in
             omv_config_add_element "/config/system" "shell" "${object}" true
         fi
 
-        if ! [ -h /etc/apache2/mods_enabled/proxy_http.load ]; then
-            echo "Enabling mod_proxy.c"
-            a2enmod proxy_http
-            invoke-rc.d apache2 graceful
-        fi
-
         if [ -x "/etc/init.d/shellinabox" ]; then
             update-rc.d shellinabox start 30 2 3 4 5 . stop 01 0 1 6 . > /dev/null
         fi
-        ;;
+
+        dpkg-trigger update-fixperms
+        dpkg-trigger update-locale
+    ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
-        ;;
+    ;;
 
     *)
         echo "postinst called with unknown argument '$1'" >&2
         exit 1
-        ;;
+    ;;
 esac
 
 exit 0

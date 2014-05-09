@@ -2,14 +2,12 @@ Source: openmediavault-shellinabox
 Section: misc
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-Build-Depends: debhelper (>= 7 )
+Build-Depends: debhelper (>= 9.0.0 )
 Standards-Version: 3.9.3
 
 Package: openmediavault-shellinabox
 Architecture: all
-Depends: ${misc:Depends},
-         openmediavault (>= 0.5.34), openmediavault (<< 0.6),
-         shellinabox
+Depends: ${misc:Depends}, openmediavault (>= 0.6.10), shellinabox
 Description: OpenMediaVault shellinabox
  Shell-in-a-box plugin that enables ssh access 
  through the web-gui.
