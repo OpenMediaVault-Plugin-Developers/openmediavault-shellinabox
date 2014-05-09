@@ -23,7 +23,7 @@ require_once("openmediavault/error.inc");
 require_once("openmediavault/initscript.inc");
 
 class OMVModuleShell extends OMVModuleServiceAbstract
-    implements OMVINotifyListener, OMVIModuleServiceStatus  {
+    implements OMVINotifyListener, OMVIModuleServiceStatus {
 
     /**
      * Get the module name.

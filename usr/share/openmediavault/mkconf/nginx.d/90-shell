@@ -32,10 +32,8 @@ if [ "$(omv_config_get "//system/shell/enable")" != "1" ]; then
 fi
 
 cat <<EOF > "${SHELL_SITE_CONF}"
-server {
-    location /shell/ {
-        proxy_pass http://localhost:4200/;
-    }
+location /shell/ {
+    proxy_pass http://localhost:4200/;
 }
 EOF
 
