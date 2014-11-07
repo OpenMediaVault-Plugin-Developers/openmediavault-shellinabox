@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# JanN <omv@eingeord.net>, 2014
+# Jan Neumann <omv@eingeord.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-shellinabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-09 06:47-0500\n"
-"PO-Revision-Date: 2014-03-02 19:44+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"POT-Creation-Date: 2014-11-07 06:03-0600\n"
+"PO-Revision-Date: 2014-11-07 12:05+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-shellinabox/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,23 +36,17 @@ msgstr "Allgemeine Einstellungen"
 msgid "Linkify"
 msgstr "Verbinden"
 
-msgid "Loading ..."
-msgstr "Lade..."
-
 msgid "Settings"
 msgstr "Einstellungen"
 
-msgid "Shell"
-msgstr "Shell"
-
-msgid "Shell Web Client"
+msgid "Shellinabox"
 msgstr ""
-
-msgid "Shell-in-a-box"
-msgstr "Shell-in-a-box"
 
 msgid "Size"
 msgstr "Größe"
+
+msgid "Start"
+msgstr ""
 
 msgid "Terminal"
 msgstr "Terminal"
@@ -60,7 +54,5 @@ msgstr "Terminal"
 msgid "Terminal settings"
 msgstr "Terminaleinstellungen"
 
-msgid ""
-"The shell-in-a-box service is not currently running. Please enable it to "
-"access the terminal."
-msgstr "Der Shell-in-a-box-Service läuft gegenwärtig nicht. Bitte aktivieren Sie ihn, um auf das Terminal zugreifen zu können."
+msgid "Web Client"
+msgstr ""

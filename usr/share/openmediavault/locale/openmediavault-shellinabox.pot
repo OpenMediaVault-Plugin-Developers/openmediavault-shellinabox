@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-shellinabox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-09 06:47-0500\n"
+"POT-Creation-Date: 2014-11-07 06:03-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,22 +35,16 @@ msgstr ""
 msgid "Linkify"
 msgstr ""
 
-msgid "Loading ..."
-msgstr ""
-
 msgid "Settings"
 msgstr ""
 
-msgid "Shell"
-msgstr ""
-
-msgid "Shell Web Client"
-msgstr ""
-
-msgid "Shell-in-a-box"
+msgid "Shellinabox"
 msgstr ""
 
 msgid "Size"
+msgstr ""
+
+msgid "Start"
 msgstr ""
 
 msgid "Terminal"
@@ -59,5 +53,5 @@ msgstr ""
 msgid "Terminal settings"
 msgstr ""
 
-msgid "The shell-in-a-box service is not currently running. Please enable it to access the terminal."
+msgid "Web Client"
 msgstr ""
