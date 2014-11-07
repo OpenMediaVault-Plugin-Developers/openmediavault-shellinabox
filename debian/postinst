@@ -25,7 +25,7 @@ set -e
 
 case "$1" in
     configure)
-        if ! omv_config_exists "/config/system/shell"; then
+        if ! omv_config_exists "/config/services/shellinabox"; then
             echo "Initialize configuration"
             object="<enable>0</enable>"
             object="${object}<linkify>none</linkify>"
@@ -33,7 +33,7 @@ case "$1" in
             object="${object}<enabletermsettings>0</enabletermsettings>"
             object="${object}<fontfamily>Courier New</fontfamily>"
             object="${object}<fontsize>14</fontsize>"
-            omv_config_add_element "/config/system" "shell" "${object}" true
+            omv_config_add_element "/config/services" "shellinabox" "${object}" true
         fi
 
         if [ -x "/etc/init.d/shellinabox" ]; then

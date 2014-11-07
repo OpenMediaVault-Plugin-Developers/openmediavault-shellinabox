@@ -1,4 +1,10 @@
-openmediavault-shellinabox (0.6.0) UNRELEASED; urgency=low
+openmediavault-shellinabox (1.0) testing; urgency=low
+
+  * Initial release for OMV 1.0
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 07 Nov 2014 05:48:45 -0600
+
+openmediavault-shellinabox (0.6.0) testing; urgency=low
 
   * Update for nginx
   * Modify package trigger handling

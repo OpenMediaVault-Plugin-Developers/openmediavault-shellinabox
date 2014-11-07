@@ -20,17 +20,17 @@
  */
 // require("js/omv/WorkspaceManager.js")
 // require("js/omv/workspace/form/Panel.js")
-// require("js/omv/form/field/CertificateComboBox.js")
+
 
 /**
- * @class OMV.module.admin.system.shell.Settings
+ * @class OMV.module.admin.service.shellinabox.Settings
  * @derived OMV.workspace.form.Panel
  */
 
-Ext.define("OMV.module.admin.system.shell.Settings", {
+Ext.define("OMV.module.admin.service.shellinabox.Settings", {
     extend : "OMV.workspace.form.Panel",
 
-    rpcService   : "Shell",
+    rpcService   : "Shellinabox",
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
@@ -49,8 +49,56 @@ Ext.define("OMV.module.admin.system.shell.Settings", {
                 "!allowBlank",
                 "!readOnly"
             ]
-         }]
+         },{
+            conditions : [
+                { name : "enable", value : true }
+            ],
+            properties : function(valid, field) {
+                this.setButtonDisabled("shellmanage", !valid);
+                this.setButtonDisabled("shellstart", !valid);
+            }
+        }]
     }],
+
+    getButtonItems : function() {
+        var me = this;
+        var items = me.callParent(arguments);
+        items.push({
+            id       : me.getId() + "-shellstart",
+            xtype    : "button",
+            text     : _("Start"),
+            icon     : "images/play.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            disabled : true,
+            scope    : me,
+            handler  : function() {
+                // Execute RPC.
+                OMV.Rpc.request({
+                    scope       : this,
+                    callback    : function(id, success, response) {
+                        this.doReload();
+                    },
+                    relayErrors : false,
+                    rpcData     : {
+                        service  : "Shellinabox",
+                        method   : "doStart"
+                    }
+                });
+            }
+        },{
+            id       : me.getId() + "-shellmanage",
+            xtype    : "button",
+            text     : _("Web Client"),
+            icon     : "images/shellinabox.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            disabled : true,
+            scope    : me,
+            handler  : function () {
+                window.open('/shellinabox', '_blank');
+            }
+        });
+        return items;
+    },
 
     getFormItems : function() {
         var me = this;
@@ -94,18 +142,6 @@ Ext.define("OMV.module.admin.system.shell.Settings", {
                 fieldLabel : _("Beep"),
                 boxLabel   : _("Enable sound on BEL character"),
                 checked    : false
-            },{
-                xtype      : "button",
-                name       : "shellmanage",
-                text       : _("Shell Web Client"),
-                scope      : this,
-                handler    : function () {
-                    var link = '/shell';
-                    window.open(link, '_blank');
-                }
-            },{
-                border     : false,
-                html       : "</p>"
             }]
         },{
             xtype         : "fieldset",
@@ -139,8 +175,8 @@ Ext.define("OMV.module.admin.system.shell.Settings", {
 
 OMV.WorkspaceManager.registerPanel({
     id        : "settings",
-    path      : "/system/shell",
+    path      : "/service/shellinabox",
     text      : _("Settings"),
     position  : 10,
-    className : "OMV.module.admin.system.shell.Settings"
+    className : "OMV.module.admin.service.shellinabox.Settings"
 });
