@@ -30,8 +30,8 @@ case "$1" in
     ;;
 
     remove)
-        if [ -f /etc/nginx/openmediavault-webgui.d/shell.conf ]; then
-            rm -f /etc/nginx/openmediavault-webgui.d/shell.conf
+        if [ -f /etc/nginx/openmediavault-webgui.d/openmediavault-shellinabox.conf ]; then
+            rm -f /etc/nginx/openmediavault-webgui.d/openmediavault-shellinabox.conf
         fi
 
         if [ -f /etc/shellinabox/default ]; then
