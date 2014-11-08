@@ -34,8 +34,8 @@ case "$1" in
             rm -f /etc/nginx/openmediavault-webgui.d/openmediavault-shellinabox.conf
         fi
 
-        if [ -f /etc/shellinabox/default ]; then
-            rm -f /etc/shellinabox/default
+        if [ -f /etc/shellinabox ]; then
+            rm -rf /etc/shellinabox
         fi
 
         invoke-rc.d nginx restart
