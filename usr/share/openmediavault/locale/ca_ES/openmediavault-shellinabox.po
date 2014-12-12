@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Paolo Velati <paolo.velati@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-shellinabox\n"
@@ -11,48 +10,48 @@ msgstr ""
 "POT-Creation-Date: 2014-11-07 06:03-0600\n"
 "PO-Revision-Date: 2014-11-14 19:51+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-shellinabox/language/it/)\n"
+"Language-Team: Catalan (Spain) (http://www.transifex.com/projects/p/openmediavault-shellinabox/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
+"Language: ca_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Beep"
-msgstr "Beep"
+msgstr ""
 
 msgid "Enable"
-msgstr "Abilita"
+msgstr ""
 
 msgid "Enable sound on BEL character"
-msgstr "Abilita suono su carattere BEL"
+msgstr ""
 
 msgid "Font"
-msgstr "Font"
+msgstr ""
 
 msgid "General settings"
-msgstr "Impostazioni generali"
+msgstr ""
 
 msgid "Linkify"
-msgstr "Converti in URL"
+msgstr ""
 
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr ""
 
 msgid "Shellinabox"
 msgstr ""
 
 msgid "Size"
-msgstr "Dimensione"
+msgstr ""
 
 msgid "Start"
 msgstr ""
 
 msgid "Terminal"
-msgstr "Terminale"
+msgstr ""
 
 msgid "Terminal settings"
-msgstr "Impostazioni terminale"
+msgstr ""
 
 msgid "Web Client"
 msgstr ""
