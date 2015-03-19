@@ -50,6 +50,9 @@ Ext.define("OMV.module.admin.service.shellinabox.Settings", {
                 "!readOnly"
             ]
          },{
+            name       : [
+                "enable"
+            ],
             conditions : [
                 { name : "enable", value : true }
             ],
