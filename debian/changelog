@@ -1,6 +1,6 @@
 openmediavault-shellinabox (1.2) testing; urgency=low
 
-  * Update depencies for shellinabox 2.18
+  * Update dependencies for shellinabox 2.18
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 30 Oct 2015 11:25:08 -0500
 
