@@ -79,7 +79,7 @@ class OMVModuleShellinabox extends OMVModuleServiceAbstract implements
             );
         }
 
-        if (!boolval($object["enble"])) {
+        if (!boolval($object["enable"])) {
             return;
         }
 
