@@ -83,7 +83,7 @@ class OMVModuleShellinabox extends OMVModuleServiceAbstract implements
             return;
         }
 
-        $systemCtl = new OMVSystemCtl($this->getName(), true);
+        $systemCtl = new OMVSystemCtl($this->getName());
         $systemCtl->enable(true);
     }
 
