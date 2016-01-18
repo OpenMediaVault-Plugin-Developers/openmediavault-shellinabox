@@ -1,3 +1,9 @@
+openmediavault-shellinabox (3.0) testing; urgency=medium
+
+  * Adapt for OMV 3.0 
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 18 Jan 2016 02:56:43 -0500
+
 openmediavault-shellinabox (1.2) testing; urgency=low
 
   * Update dependencies for shellinabox 2.18
@@ -74,4 +80,5 @@ openmediavault-shellinabox (0.1.0) testing; urgency=low
   * initial release
 
  -- Mitchell Taylor <mitchtaydev@gmail.com>  Wed, 16 Oct 2013 10:34:00 +1200
+
 
