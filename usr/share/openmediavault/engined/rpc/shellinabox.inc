@@ -158,7 +158,7 @@ class OMVRpcServiceShellinabox extends OMVRpcServiceAbstract
             return;
         }
 
-        $systemCtl = new OMVSystemCtl($this->getName());
+        $systemCtl = new OMVSystemCtl($this->getPluginName());
         $systemCtl->enable(true);
     }
 }
