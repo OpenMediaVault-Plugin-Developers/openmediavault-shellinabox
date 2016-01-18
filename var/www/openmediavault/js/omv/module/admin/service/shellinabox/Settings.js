@@ -56,7 +56,6 @@ Ext.define("OMV.module.admin.service.shellinabox.Settings", {
             ],
             properties : function(valid, field) {
                 this.setButtonDisabled("shellmanage", !valid);
-                this.setButtonDisabled("shellstart", !valid);
             }
         }]
     }],
@@ -65,28 +64,6 @@ Ext.define("OMV.module.admin.service.shellinabox.Settings", {
         var me = this;
         var items = me.callParent(arguments);
         items.push({
-            id       : me.getId() + "-shellstart",
-            xtype    : "button",
-            text     : _("Start"),
-            icon     : "images/play.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            disabled : true,
-            scope    : me,
-            handler  : function() {
-                // Execute RPC.
-                OMV.Rpc.request({
-                    scope       : this,
-                    callback    : function(id, success, response) {
-                        this.doReload();
-                    },
-                    relayErrors : false,
-                    rpcData     : {
-                        service  : "Shellinabox",
-                        method   : "doStart"
-                    }
-                });
-            }
-        },{
             id       : me.getId() + "-shellmanage",
             xtype    : "button",
             text     : _("Web Client"),
