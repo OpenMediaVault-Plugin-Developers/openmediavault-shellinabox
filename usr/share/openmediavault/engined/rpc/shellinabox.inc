@@ -1,9 +1,7 @@
 <?php
 /**
- * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
- * @author    Volker Theile <volker.theile@openmediavault.org>
- * @copyright Copyright (c) 2009-2013 Volker Theile
- * @copyright Copyright (c) 2013-2014 OpenMediaVault Plugin Developers
+ *
+ * Copyright (c) 2013-2016 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +19,7 @@
 
 require_once("openmediavault/object.inc");
 require_once("openmediavault/error.inc");
-require_once "openmediavault/initscript.inc";
+require_once "openmediavault/systemctl.inc";
 require_once("openmediavault/config.inc");
 require_once("openmediavault/rpcservice.inc");
 require_once("openmediavault/notify.inc");
@@ -60,10 +58,9 @@ class OMVRpcServiceShellinabox extends OMVRpcServiceAbstract
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext(
-            $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
-        );
+        $this->validateMethodContext($context, [
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ]);
 
         // Get the configuration object.
         $object = $xmlConfig->get($this->getXPath());
@@ -89,10 +86,9 @@ class OMVRpcServiceShellinabox extends OMVRpcServiceAbstract
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext(
-            $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
-        );
+        $this->validateMethodContext($context, [
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ]);
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams(
@@ -110,22 +106,22 @@ class OMVRpcServiceShellinabox extends OMVRpcServiceAbstract
             }'
         );
 
-        // Prepare configuration objects
-        $object = array(
+        // Prepare the configuration objects
+        $object = [
             "enable"             => array_boolval($params, 'enable'),
             "linkify"            => $params['linkify'],
             "enablebeep"         => array_boolval($params, 'enablebeep'),
             "enabletermsettings" => array_boolval($params, 'enabletermsettings'),
             "fontfamily"         => $params['fontfamily'],
             "fontsize"           => $params['fontsize']
-        );
+        ];
 
         // Set the configuration object.
         if ($xmlConfig->replace($this->getXPath(), $object) === false) {
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED);
         }
 
-        // Notify configuration changes.
+        // Notify about configuration changes.
         $dispatcher = &OMVNotifyDispatcher::getInstance();
 
         $dispatcher->notify(
@@ -143,10 +139,9 @@ class OMVRpcServiceShellinabox extends OMVRpcServiceAbstract
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext(
-            $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
-        );
+        $this->validateMethodContext($context, [
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ]);
 
         $object = $xmlConfig->get($this->getXPath());
 
@@ -163,8 +158,8 @@ class OMVRpcServiceShellinabox extends OMVRpcServiceAbstract
             return;
         }
 
-        $initd = new OMVSysVInitScript($this->getPluginName(), true);
-        $initd->exec();
+        $systemCtl = new OMVSystemCtl($this->getName());
+        $systemCtl->enable(true);
     }
 }
 
