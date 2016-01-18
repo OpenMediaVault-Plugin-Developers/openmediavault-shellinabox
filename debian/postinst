@@ -1,9 +1,6 @@
 #!/bin/sh
 #
-# @license http://www.gnu.org/licenses/gpl.html GPL Version 3
-# @author Volker Theile <volker.theile@openmediavault.org>
-# @copyright Copyright (c) 2009-2013 Volker Theile
-# @copyright Copyright (c) 2013-2014 OpenMediaVault Plugin Developers
+#Copyright (c) 2013-2016 OpenMediaVault Plugin Developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,24 +22,25 @@ set -e
 
 case "$1" in
     configure)
-        if ! omv_config_exists "/config/services/shellinabox"; then
+        # Set the default settings of the service package to those expected by
+        # OpenMediaVault.
+        if [ -z "${2}" ]; then
+            deb-systemd-helper disable shellinabox.service >/dev/null || true
+            deb-systemd-invoke stop shellinabox.service >/dev/null || true
+        fi
+        
+        SERVICE_XPATH_NAME="shellinabox"
+        SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
+        
+        if ! omv_config_exists "${SERVICE_XPATH}"; then
             echo "Initialize configuration"
-            object="<enable>0</enable>"
-            object="${object}<linkify>none</linkify>"
-            object="${object}<enablebeep>0</enablebeep>"
-            object="${object}<enabletermsettings>0</enabletermsettings>"
-            object="${object}<fontfamily>Courier New</fontfamily>"
-            object="${object}<fontsize>14</fontsize>"
-            omv_config_add_element "/config/services" "shellinabox" "${object}" true
-        fi
-
-        if [ -x "/etc/init.d/shellinabox" ]; then
-            update-rc.d shellinabox start 30 2 3 4 5 . stop 01 0 1 6 . > /dev/null
-        fi
-
-        if [ "$(omv_config_get "//services/shellinabox/enable")" = "0" ]; then
-            echo "Stopping shellinabox daemon"
-            invoke-rc.d --force shellinabox stop
+            omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
+            omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
+            omv_config_add_element "${SERVICE_XPATH}" "linkify" "none"
+            omv_config_add_element "${SERVICE_XPATH}" "enablebeep" "0"
+            omv_config_add_element "${SERVICE_XPATH}" "enabletermsettings" "0"
+            omv_config_add_element "${SERVICE_XPATH}" "fontfamily" "Courier New"
+            omv_config_add_element "${SERVICE_XPATH}" "fontsize" "14"
         fi
 
         dpkg-trigger update-fixperms
