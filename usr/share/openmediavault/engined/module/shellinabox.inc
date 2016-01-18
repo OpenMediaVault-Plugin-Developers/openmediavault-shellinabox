@@ -118,11 +118,11 @@ class OMVModuleShellinabox extends OMVModuleServiceAbstract implements
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             $this->getEventMessagePath(),
-            array($this, "setDirty")
+            [$this, "setDirty"]
         );
     }
 }
 
-// Register module.
+// Register the module.
 $moduleMgr = &OMVModuleMgr::getInstance();
 $moduleMgr->registerModule(new OMVModuleShellinabox());
