@@ -133,34 +133,6 @@ class OMVRpcServiceShellinabox extends OMVRpcServiceAbstract
         // Return the configuration object.
         return $object;
     }
-
-    public function doStart($params, $context)
-    {
-        global $xmlConfig;
-
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, [
-            "role" => OMV_ROLE_ADMINISTRATOR
-        ]);
-
-        $object = $xmlConfig->get($this->getXPath());
-
-        if (is_null($object))
-        {
-            throw new OMVException(
-                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath()
-            );
-        }
-
-        if (!boolval($object["enable"]))
-        {
-            return;
-        }
-
-        $systemCtl = new OMVSystemCtl($this->getPluginName());
-        $systemCtl->enable(true);
-    }
 }
 
 // Register the RPC service.
