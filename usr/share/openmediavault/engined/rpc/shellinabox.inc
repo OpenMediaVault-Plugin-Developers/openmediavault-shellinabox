@@ -49,7 +49,6 @@ class OMVRpcServiceShellinabox extends OMVRpcServiceAbstract
     public function initialize() {
         $this->registerMethod("getSettings");
         $this->registerMethod("setSettings");
-        $this->registerMethod("doStart");
     }
 
     public function getSettings($params, $context)
