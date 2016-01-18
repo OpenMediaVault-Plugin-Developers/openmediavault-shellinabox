@@ -62,5 +62,5 @@ xmlstarlet sel -t -m "//services/shellinabox" \
   -i "fontsize > 0" -v "concat('    font-size: ', fontsize, 'px;')" -n -b \
   -o "}" ${OMV_CONFIG_FILE} | xmlstarlet unesc > ${OMV_SHELL_TERMCSS}
 
-service nginx reload
+deb-systemd-invoke reload nginx.service >/dev/null || true
 
