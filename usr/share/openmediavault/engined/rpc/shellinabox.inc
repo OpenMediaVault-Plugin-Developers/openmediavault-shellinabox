@@ -19,7 +19,6 @@
 
 require_once("openmediavault/object.inc");
 require_once("openmediavault/error.inc");
-require_once "openmediavault/systemctl.inc";
 require_once("openmediavault/config.inc");
 require_once("openmediavault/rpcservice.inc");
 require_once("openmediavault/notify.inc");
