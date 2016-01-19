@@ -34,8 +34,12 @@ case "$1" in
             rm -f /etc/nginx/openmediavault-webgui.d/openmediavault-shellinabox.conf
         fi
 
-        if [ -f /etc/shellinabox ]; then
+        if [ -d /etc/shellinabox ]; then
             rm -rf /etc/shellinabox
+        fi
+
+        if [ -d /var/lib/shellinabox ]; then
+            rm -rf /var/lib/shellinabox
         fi
 
         deb-systemd-invoke reload nginx.service >/dev/null || true
