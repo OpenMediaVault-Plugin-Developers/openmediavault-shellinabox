@@ -25,8 +25,8 @@ case "$1" in
         # Set the default settings of the service package to those expected by
         # OpenMediaVault.
         if [ -z "${2}" ]; then
-            deb-systemd-helper disable shellinabox.service >/dev/null || true
-            deb-systemd-invoke stop shellinabox.service >/dev/null || true
+            systemctl stop shellinabox.service
+            systemctl disable shellinabox.service
         fi
         
         SERVICE_XPATH_NAME="shellinabox"
