@@ -1,3 +1,9 @@
+openmediavault-shellinabox (3.2) testing; urgency=medium
+
+  * Fix mkconf reload nginx
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 30 Jan 2016 12:23:28 -0500
+
 openmediavault-shellinabox (3.1) testing; urgency=medium
 
   * Remove start button 
