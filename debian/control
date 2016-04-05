@@ -8,7 +8,7 @@ Standards-Version: 3.9.6
 
 Package: openmediavault-shellinabox
 Architecture: all
-Depends: openmediavault (>= 3.0),
+Depends: openmediavault (= 3.0.13),
          shellinabox (>= 2.18),
          ${misc:Depends}
 Description: Web-based SSH client.
