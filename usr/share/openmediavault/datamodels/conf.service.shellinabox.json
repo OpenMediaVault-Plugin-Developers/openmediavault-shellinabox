@@ -20,16 +20,18 @@
 		},
 		"enabletermsettings": {
 			"type": "boolean",
-            "default": false
+			"default": false
 		},
-        "fontfamily": {
-            "type": "string"
-        },
-        "fontsize": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 72,
-            "default": 14
-        }
+		"fontfamily": {
+			"type": "string"
+			
+		},
+		"fontsize": {
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 72,
+			"default": 14
+			
+		}
 	}
 }
