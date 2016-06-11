@@ -24,12 +24,12 @@
 				"type": "string",
 				"required": true
 			},
-            "fontsize": {
-                "type": "integer",
-                "minimum": 1,
-                "maximum": 72,
-                "required": true
-            } 
+        		"fontsize": {
+                		"type": "integer",
+                		"minimum": 1,
+                		"maximum": 72,
+                		"required": true
+            		} 
 		}
 	}
 }
