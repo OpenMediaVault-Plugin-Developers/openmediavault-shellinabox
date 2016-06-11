@@ -1,0 +1,35 @@
+{
+	"type": "config",
+	"id": "conf.service.shellinabox",
+	"title": "Shellinabox",
+	"queryinfo": {
+		"xpath": "//services/shellinabox",
+		"iterable": false
+	},
+	"properties": {
+		"enable": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkify": {
+			"type": "string"
+		},
+		"enablebeep": {
+			"type": "boolean",
+			"default": false
+		},
+		"enabletermsettings": {
+			"type": "boolean",
+            "default": false
+		},
+        "fontfamily": {
+            "type": "string"
+        },
+        "fontsize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 72,
+            "default": 14
+        }
+	}
+}
