@@ -1,12 +1,11 @@
 <?php
 /**
- *
- * Copyright (c) 2013-2016 OpenMediaVault Plugin Developers
+ * Copyright (C) 2014-2016 OpenMediaVault Plugin Developers.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
- * any later version.
+ * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -14,115 +13,104 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-require_once("openmediavault/module.inc");
-require_once("openmediavault/config.inc");
-require_once("openmediavault/error.inc");
-require_once("openmediavault/systemctl.inc");
-
-class OMVModuleShellinabox extends OMVModuleServiceAbstract implements
-    OMVINotifyListener,
-    OMVIModuleServiceStatus
- {
-
+namespace OMV\Engined\Module;
+use OMV\Config\Database;
+use OMV\Engine\Module\IServiceStatus;
+use OMV\Engine\Module\ServiceAbstract;
+use OMV\Engine\Notify\Dispatcher;
+use OMV\Engine\Notify\IListener;
+use OMV\System\Process;
+use OMV\System\SystemCtl;
+class Shellinabox extends ServiceAbstract implements
+    IListener,
+    IServiceStatus
+{
+    /** @var Database */
+    private $database;
+    /** @var string */
+    private $dataModelPath = 'conf.service.shellinabox';
+    /** @var string */
+    private $eventMessagePath = 'org.openmediavault.conf.service.shellinabox';
+    /** @var string */
+    private $serviceName = 'shellinabox.service';
+    public function __construct(Database $database = null)
+    {
+        $this->database = $database ?: Database::getInstance();
+    }
+    /**
+     * Get the module name.
+     *
+     * @return string
+     */
     public function getName()
     {
-        return "shellinabox";
+        return 'shellinabox';
     }
-
-    private function getPluginName()
-    {
-        return strtolower($this->getName());
-    }
-
-    private function getXPath()
-    {
-        return sprintf("/config/services/%s", $this->getPluginName());
-    }
-
-    private function getEventMessagePath()
-    {
-        return sprintf("org.openmediavault.services.%s", $this->getPluginName());
-    }
-
-    public function applyConfig()
-    {
-        $cmd = sprintf("export LANG=C;omv-mkconf %s 2>&1", $this->getName());
-
-        if(0 !== $this->exec($cmd, $output)) {
-            throw new OMVException(
-                OMVErrorMsg::E_EXEC_FAILED,
-                $cmd,
-                implode("PHP_EOL", $output)
-            );
-        }
-    }
-
-    public function stopService()
-    {
-        $systemCtl = new OMVSystemCtl($this->getName());
-        $systemCtl->disable(true);
-    }
-
-    public function startService()
-    {
-        global $xmlConfig;
-
-        $object = $xmlConfig->get($this->getXPath());
-
-        if (is_null($object)) {
-            throw new OMVException(
-                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath()
-            );
-        }
-
-        if (!boolval($object["enable"])) {
-            return;
-        }
-
-        $systemCtl = new OMVSystemCtl($this->getName());
-        $systemCtl->enable(true);
-    }
-
+    /**
+     * Get the module status.
+     *
+     * @return array
+     */
     public function getStatus()
     {
-        global $xmlConfig;
-
-        $object = $xmlConfig->get($this->getXPath());
-
-        if(is_null($object)) {
-            throw new OMVException(
-                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath()
-            );
-        }
-
-        $systemCtl = new OMVSystemCtl($this->getName());
-
+        $object = $this->database->get($this->dataModelPath);
+        $systemCtl = new SystemCtl($this->serviceName);
         return [
-            "name" => $this->getName(),
-            "title" => gettext("Shellinabox"),
-            "enabled" => boolval($object["enable"]),
-            "running" => $systemCtl->isActive()
+            'name' => $this->getName(),
+            'title' => gettext('Shellinabox'),
+            'enabled' => $object->get('enable'),
+            'running' => $systemCtl->isActive(),
         ];
     }
-
     /**
-     * Bind listeners
+     * Generate the configuration.
+     *
+     * @return void
      */
-    public function bindListeners(OMVNotifyDispatcher $dispatcher)
+    public function applyConfig()
+    {
+        $cmd = new Process('omv-mkconf', 'shellinabox');
+        $cmd->setRedirect2to1();
+        $cmd->execute();
+    }
+    /**
+     * Start the managed service.
+     *
+     * @return void
+     */
+    public function startService()
+    {
+        $object = $this->database->get($this->dataModelPath);
+        if ($object->get('enable')) {
+            $systemCtl = new SystemCtl($this->serviceName);
+            $systemCtl->enable(true);
+        }
+    }
+    /**
+     * Stop the managed service.
+     *
+     * @return void
+     */
+    public function stopService()
+    {
+        $systemCtl = new SystemCtl($this->serviceName);
+        $systemCtl->disable(true);
+    }
+    /**
+     * Bind listeners.
+     *
+     * @param Dispatcher $dispatcher The dispatcher object.
+     *
+     * @return void
+     */
+    public function bindListeners(Dispatcher $dispatcher)
     {
         $dispatcher->addListener(
-            OMV_NOTIFY_MODIFY,
-            $this->getEventMessagePath(),
-            [$this, "setDirty"]
+            OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
+            $this->eventMessagePath,
+            [$this, 'setDirty']
         );
     }
 }
-
-// Register the module.
-$moduleMgr = &OMVModuleMgr::getInstance();
-$moduleMgr->registerModule(new OMVModuleShellinabox());
