@@ -1,3 +1,9 @@
+openmediavault-shellinabox (3.4) testing; urgency=low
+
+  * Update for Datamodels.
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 11 Jun 2016 00:37:32 -0400
+
 openmediavault-shellinabox (3.3) testing; urgency=low
 
   * Changed dependency of OMV Package to = 3.0.13 to avoid accidental
