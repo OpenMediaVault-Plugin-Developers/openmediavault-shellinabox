@@ -1,0 +1,35 @@
+{
+	"type": "rpc",
+	"id": "rpc.shellinabox.setsettings",
+	"params": {
+		"type": "object",
+		"properties": {
+			"enable": {
+				"type": "boolean",
+				"required": true
+			},
+			"linkify": {
+				"type": "string",
+				"required": true
+			},
+			"enablebeep": {
+				"type": "boolean",
+				"required": false
+			},
+			"enabletermsettings": {
+				"type": "boolean",
+				"required": false
+			},
+			"fontfamily": {
+				"type": "string",
+				"required": true
+			},
+            "fontsize": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 72,
+                "required": true
+            } 
+		}
+	}
+}
