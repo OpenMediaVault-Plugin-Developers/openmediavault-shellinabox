@@ -16,8 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 namespace OMV\Engined\Rpc;
+
 use OMV\Config\Database;
 use OMV\Rpc\ServiceAbstract;
+
 class Shellinabox extends ServiceAbstract
 {
     /** @var Database */
